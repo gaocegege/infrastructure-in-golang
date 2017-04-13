@@ -125,7 +125,7 @@ URL: `http://${IP}:8000/`
 
 TODO
 
-### Awesome Development Environment
+### Awesome Development Environment(Docker Machine + Docker)
 
 You know there is a tool `docker-machine`, which could give you a fixed internal IP. You could use it as a mock public IP. Then you could build a awesome development although you are a poor man.
 
@@ -162,7 +162,7 @@ URL:`http://${IP}:10080/`
 
 URL: `http://${IP}:8000/`
 
-### Poor Docker Swarm mode(docker-machine + docker swarm mode)
+### Poor Docker Swarm mode(Docker Machine + Docker Swarm Mode)
 
 Again, you are a poor man but you want to use Docker Swarm mode to build your infrastructure in data center level, then you need `docker-machine`.
 
@@ -217,11 +217,11 @@ URL: `http://${Manager_IP}:8000/`
 
 TODO
 
-### Rich Docker Swarm mode(docker swarm mode)
+### Rich Docker Swarm mode(Docker Swarm Mode)
 
 TODO(I have no money to do)
 
-### Docker Swarm Standalone(docker-swarm)
+### Docker Swarm Standalone(Docker Swarm)
 
 TODO
 
