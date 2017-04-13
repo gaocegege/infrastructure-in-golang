@@ -7,7 +7,7 @@ The goal of this project is to make the easiest, fastest, and most painless way 
 In pool development environment, you don't have enough money to buy a server with public IP. You have to use some graceful hacks to build a devlopment environment.
 
 ```bash
-$ cd dev; source ./env.sh
+$ source dev/env.sh && cd dev
 $ docker-compose up
 ```
 
