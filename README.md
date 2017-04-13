@@ -23,7 +23,7 @@ $ docker-compose up
 #### Gogs
 
 ```bash
-# Get the IP from $(ifconfig)
+# Get the IP from $(ifconfig).
 GOGS_IP="docker0 IP"
 ```
 
@@ -63,13 +63,36 @@ TODO
 
 You are not a poor man. You have money to buy a server with public IP, so things are easy to you.
 
+```bash
+# Get the IP from your cloud server vendor.
+$ IP="Your Public IP"
+$ source dev/env.sh && cd dev
+$ docker-compose up
+```
+
 #### Gogs
 
-TODO
+Configuration in Gogs installation UI: 
+
+```text
+Database Settings
+
+Host: mysql:3306
+Password: gogsdafahao
+
+Application General Settings
+
+Domain: ${IP}
+SSH Port: 10022
+HTTP Port: 10080
+Application URL: http://${IP}:10080/
+```
+
+URL:`http://${IP}:10080/`
 
 #### Drone
 
-TODO
+URL: `http://${IP}:8000/`
 
 #### OpenTracing
 
