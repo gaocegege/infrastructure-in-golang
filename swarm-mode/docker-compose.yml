@@ -1,0 +1,43 @@
+version: '3'
+
+services:
+  gogs:
+    image: gogs/gogs:0.11.4
+    ports:
+      - "10022:22"
+      - "10080:3000"
+    environment:
+      - Domain=0.0.0.0
+      - SSH_PORT=10022
+
+  mysql:
+    image: mysql:5.7.13
+    environment:
+      - MYSQL_ROOT_PASSWORD=gogsdafahao
+      - MYSQL_DATABASE=gogs
+
+  drone-server:
+    image: drone/drone:0.5.0
+    volumes:
+      - /var/lib/drone:/var/lib/drone/
+    ports:
+      - 8000:8000
+    environment:
+      - DRONE_OPEN=true
+      - DRONE_DEBUG=true
+      - DRONE_GOGS=true
+      - DRONE_GOGS_URL=http://gogs:3000
+      - DRONE_GOGS_PRIVATE_MODE=true
+      - DRONE_GOGS_SKIP_VERIFY=true
+      - DRONE_SECRET=dronedafahao
+
+  drone-agent:
+    image: drone/drone:0.5.0
+    command: agent
+    depends_on: [ drone-server ]
+    volumes:
+      - /var/run/docker.sock:/var/run/docker.sock
+    environment:
+      - DRONE_SERVER=ws://drone-server:8000/ws/broker
+      - DRONE_DEBUG=true
+      - DRONE_SECRET=dronedafahao
