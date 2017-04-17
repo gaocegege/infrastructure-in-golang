@@ -280,6 +280,8 @@ URL: `http://${MINIKUBE_IP}:30080/`
 
 URL: `http://${MINIKUBE_IP}:30800/`
 
+Remember to update the webhook, this URL isn't accepted by gogs, you should replace MINIKUBE_IP with `drone-server` in webhook settings.
+
 #### Kubenetes Dashboard
 
 URL: `http://${MINIKUBE_IP}:30000/`
