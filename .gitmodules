@@ -1,0 +1,3 @@
+[submodule "opentracing-example"]
+	path = opentracing-example
+	url = https://github.com/gaocegege/opentracing-example
