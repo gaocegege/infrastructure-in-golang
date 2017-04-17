@@ -28,6 +28,8 @@ The goal of this project is to make the easiest, fastest, and most painless way 
          * [Poor Kubernetes(minikube)](#poor-kubernetesminikube)
             * [Gogs](#gogs-4)
             * [Drone](#drone-4)
+            * [Kubenetes Dashboard](#kubenetes-dashboard)
+            * [Kubernetes Grafana](#kubernetes-grafana)
             * [OpenTracing](#opentracing-3)
 
 Created by [gh-md-toc](https://github.com/ekalinin/github-markdown-toc)
@@ -239,26 +241,20 @@ Then minikube should be started:
 ```bash
 $ cd kubernetes/
 $ minikube start
-
-$ kubectl create -f mysql-claim0-persistentvolumeclaim.yaml
-$ kubectl create -f mysql-service.yaml
-$ kubectl create -f mysql-deployment.yaml
-
-$ kubectl create -f gogs-claim0-persistentvolumeclaim.yaml
-$ kubectl create -f gogs-service.yaml
-$ kubectl create -f gogs-deployment.yaml
-
-$ kubectl create -f drone-server-claim0-persistentvolumeclaim.yaml
-$ kubectl create -f drone-server-service.yaml
-$ kubectl create -f drone-server-deployment.yaml
-
-$ kubectl create -f drone-agent-service.yaml
-$ kubectl create -f drone-agent-deployment.yaml
-
-$ MINIKUBE_IP="Minikuber Machine IP"
+$ MINIKUBE_IP=$(minikube ip)
+$ kubectl create -f .
 ```
 
 **NOTICE:** There are some performance bugs in this way: drone runs builds slowly. A simple "Hello, World" CI build spends drone 9mins. I don't know why now.
+
+| NAMESPACE   |     NAME                |              URL            |
+|-------------|-------------------------|-----------------------------|
+| default     | drone-server            | http://${MINIKUBE_IP}:30800 |
+| default     | gogs(ssh)               | http://${MINIKUBE_IP}:30022 |
+| default     | gogs(http)              | http://${MINIKUBE_IP}:30080 |
+| kube-system | heapster                | http://${MINIKUBE_IP}:30082 |
+| kube-system | kubernetes-dashboard    | http://${MINIKUBE_IP}:30000 |
+| kube-system | monitoring-grafana      | http://${MINIKUBE_IP}:30088 |
 
 #### Gogs
 
@@ -283,6 +279,14 @@ URL: `http://${MINIKUBE_IP}:30080/`
 #### Drone
 
 URL: `http://${MINIKUBE_IP}:30800/`
+
+#### Kubenetes Dashboard
+
+URL: `http://${MINIKUBE_IP}:30000/`
+
+#### Kubernetes Grafana
+
+URL: `http://${MINIKUBE_IP}:30088/`
 
 #### OpenTracing
 
