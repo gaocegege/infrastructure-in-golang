@@ -70,7 +70,7 @@ HTTP Port: 10080
 Application URL: http://${GOGS_IP}:10080/
 ```
 
-URL:`http://${GOGS_IP}:10080/`
+URL: `http://${GOGS_IP}:10080/`
 
 #### Drone
 
@@ -115,7 +115,7 @@ HTTP Port: 10080
 Application URL: http://${IP}:10080/
 ```
 
-URL:`http://${IP}:10080/`
+URL: `http://${IP}:10080/`
 
 #### Drone
 
@@ -156,7 +156,7 @@ HTTP Port: 10080
 Application URL: http://${IP}:10080/
 ```
 
-URL:`http://${IP}:10080/`
+URL: `http://${IP}:10080/`
 
 #### Drone
 
@@ -207,7 +207,7 @@ HTTP Port: 10080
 Application URL: http://${Manager_IP}:10080/
 ```
 
-URL:`http://${Manager_IP}:10080/`
+URL: `http://${Manager_IP}:10080/`
 
 #### Drone
 
@@ -225,6 +225,62 @@ TODO(I have no money to do)
 
 TODO
 
-### In Kubernetes
+### Poor Kubernetes(minikube)
+
+It is me.
+
+First, you need to [install the requirements for minikube.](https://kubernetes.io/docs/getting-started-guides/minikube).
+
+Then minikube should be started:
+
+```bash
+$ cd kubernetes/
+$ minikube start
+
+$ kubectl create -f mysql-claim0-persistentvolumeclaim.yaml
+$ kubectl create -f mysql-service.yaml
+$ kubectl create -f mysql-deployment.yaml
+
+$ kubectl create -f gogs-claim0-persistentvolumeclaim.yaml
+$ kubectl create -f gogs-service.yaml
+$ kubectl create -f gogs-deployment.yaml
+
+$ kubectl create -f drone-server-claim0-persistentvolumeclaim.yaml
+$ kubectl create -f drone-server-service.yaml
+$ kubectl create -f drone-server-deployment.yaml
+
+$ kubectl create -f drone-agent-service.yaml
+$ kubectl create -f drone-agent-deployment.yaml
+
+$ MINIKUBE_IP="Minikuber Machine IP"
+```
+
+**NOTICE:** There are some performance bugs in this way: drone runs builds slowly. A simple "Hello, World" CI build spends drone 9mins. I don't know why now.
+
+#### Gogs
+
+Configuration in Gogs installation UI: 
+
+```text
+Database Settings
+
+Host: mysql:3306
+Password: gogsdafahao
+
+Application General Settings
+
+Domain: ${MINIKUBE_IP}
+SSH Port: 30022
+HTTP Port: 30080
+Application URL: http://${MINIKUBE_IP}:30080/
+```
+
+URL: `http://${MINIKUBE_IP}:30080/`
+
+#### Drone
+
+URL: `http://${MINIKUBE_IP}:30800/`
+
+#### OpenTracing
 
 TODO

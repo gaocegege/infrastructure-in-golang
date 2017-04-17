@@ -1,0 +1,33 @@
+apiVersion: extensions/v1beta1
+kind: Deployment
+metadata:
+  creationTimestamp: null
+  name: mysql
+spec:
+  replicas: 1
+  strategy:
+    type: Recreate
+  template:
+    metadata:
+      creationTimestamp: null
+      labels:
+        io.kompose.service: mysql
+    spec:
+      containers:
+      - env:
+        - name: MYSQL_ROOT_PASSWORD
+          value: gogsdafahao
+        - name: MYSQL_DATABASE
+          value: gogs
+        image: mysql:5.7.13
+        name: mysql
+        resources: {}
+        volumeMounts:
+        - mountPath: /var/lib/mysql
+          name: mysql-claim0
+      restartPolicy: Always
+      volumes:
+      - name: mysql-claim0
+        persistentVolumeClaim:
+          claimName: mysql-claim0
+status: {}
